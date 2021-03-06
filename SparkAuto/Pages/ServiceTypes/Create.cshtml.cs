@@ -17,6 +17,8 @@ namespace SparkAuto.Pages.ServiceTypes
         {
             _db = db;
         }
+
+        [BindProperty]
         public ServiceType  serviceType { get; set; }
 
         public IActionResult OnGet()
@@ -30,6 +32,9 @@ namespace SparkAuto.Pages.ServiceTypes
             {
                 return Page();
             }
+
+            _db.ServiceType.Add(serviceType);
+            await _db.SaveChangesAsync();
 
             return RedirectToPage("Index");
         }
